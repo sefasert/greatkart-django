@@ -1,6 +1,6 @@
 from django.db import models
 
-from store.models import Product, Variation
+from store.models import Product
 # Create your models here.
 
 class Cart(models.Model):
@@ -12,7 +12,6 @@ class Cart(models.Model):
 
 class CartItem(models.Model):
     product     = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variations  = models.ManyToManyField(Variation, blank=True) #çokdan çoka yani burada color ve size değerleri olacak
     cart        = models.ForeignKey(Cart, on_delete=models.CASCADE)
     quantity    = models.IntegerField()
     is_active   = models.BooleanField(default=True)

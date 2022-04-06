@@ -3,6 +3,8 @@ from django.contrib import admin
 from .models import Account
 
 from django.contrib.auth.admin import UserAdmin
+
+from django.contrib.auth.models import Group
 # Register your models here.
 
 class AccountAdmin(UserAdmin):
@@ -16,3 +18,4 @@ class AccountAdmin(UserAdmin):
     fieldsets           = ()
 
 admin.site.register(Account, AccountAdmin)
+admin.site.unregister(Group) #grubu gizlemek için ekledik
