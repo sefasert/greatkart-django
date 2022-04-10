@@ -1,0 +1,9 @@
+{% autoescape off %}
+
+Sayın {{user.first_name}} {{user.last_name}},
+
+Hesabınızı aktive etmeniz için alttaki linke tıklayın
+http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+
+
+{% endautoescape %}
