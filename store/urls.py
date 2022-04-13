@@ -8,4 +8,5 @@ urlpatterns = [
     path("search/", views.search, name="search"),
     path("autocomplete/", views.autocomplete, name="autocomplete"),
 
+    
 ]

@@ -11,6 +11,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
+
+from carts.views import _cart_id
+from carts.models import Cart,CartItem
 # Create your views here.
 def register(request):
     if request.method == "POST":
@@ -62,6 +65,7 @@ def login(request):
             return redirect("login")
     return render(request, "accounts/login.html")
 
+
 @login_required(login_url = "login")
 def logout(request):
     auth.logout(request)
@@ -84,8 +88,10 @@ def activate(request, uidb64, token):
         messages.error(request, "geçersiz aktivasyon linki")
         return redirect("register")
 
+
 def dashboard(request):
     return render(request, "accounts/dashboard.html", {})
+
 
 def forgotPassword(request):
     if request.method == "POST":
@@ -113,6 +119,7 @@ def forgotPassword(request):
             return redirect("forgotPassword")
     return render(request, "accounts/forgotPassword.html")
 
+
 def reset_password_validate(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
@@ -127,6 +134,7 @@ def reset_password_validate(request, uidb64, token):
         return redirect("forgotPassword")
 
     return render(request, "accounts/reset_password_validate.html")
+
 
 def resetPassword(request):
     if request.method == "POST":
